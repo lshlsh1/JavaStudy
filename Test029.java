@@ -23,6 +23,7 @@
 //	  연도가 4의 배수이면서 100의 배수가 아니거나
 //	  또는 400의 배수이면 윤년
 //	  그렇지 않으면 평년
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -35,12 +36,14 @@ public class Test029
 		String b;
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.print("임의의 연도 입력 : ");
 		
 		a = Integer.parseInt(br.readLine());
 		
 		b = (a%4==0 && a%100!=0 || a%400==0) ? "윤년" : "평년"; 
 		
-		System.out.print("임의의 연도 입력 : ");
+
 		System.out.printf("%d → %s\n", a, b);
 	}
 }
