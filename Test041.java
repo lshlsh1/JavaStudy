@@ -51,12 +51,22 @@ public class Test041
 		*/
 
 		// ② switch 문의 기본 모델
+		/*
 		switch(a)
 		{
 			case 3 : System.out.print("★"); 
 			case 2 : System.out.print("★"); 
 			case 1 : System.out.print("★\n"); break;
 			default : System.out.println("입력 오류~!!!");
+		}
+		*/
+		switch(a)
+		{	
+			default : System.out.println("입력 오류~!!!"); break;
+			case 3 : System.out.print("★"); 
+			case 2 : System.out.print("★"); 
+			case 1 : System.out.print("★\n"); 
+		
 		}
 
 		
