@@ -13,7 +13,7 @@ public class Test067
 		System.out.println("Hi~~!!!");			
 		if(cnt==1)
 			return;
-			showHi(--cnt);
+			showHi(--cnt);	//postfix(cnt--) 일때는 숫자의 감소가 일어나지 않는다
 	}
 }
 
