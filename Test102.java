@@ -53,17 +53,19 @@ public class Test102
 		12, 42, 52, 62, 60			2	4
 				==		==
 		---------------------------------------3회전
-		12, 42, 52, 60, 62			3	4
+		12, 42, 52, 60, 62			3	4				
 					==	==
 		---------------------------------------4회전
 		*/
 		
+
 		System.out.print("data : ");
 		for (int i : a )
 		{
 				System.out.print(i+ " ");
 		}System.out.println();
 
+		/*내가한거
 		for (int i=0 ; i<a.length; i++)
 		{
 			for (int j=i+1 ; j<a.length ; j++)
@@ -76,9 +78,10 @@ public class Test102
 				}
 			}
 		}
+		*/
 		
 
-		
+		//<선생님 풀이>
 		/*
 		for ( int i =0 ; i<a.length ; i++)
 		{
@@ -90,12 +93,33 @@ public class Test102
 		//① 순차적으로 접근해서 몽땅 다 꺼낼 대상(타겟) 지정 : a
 		//② 타겟을 구성하고있는 타입 지정 : int 
 		//③ 타입의 이름은 내가 지을 수 있음 : n
-		//for (타입 이름 : 타겟)
+		//--==>> for (타입 이름 : 타겟)
 		System.out.print("Sort data : ");
 		for (int n : a)
 		{
 			System.out.print(n+ " ");
 		}System.out.println();
+		//--==>> Sort data : 12 42 52 60 62
+		int i,j=0;
+		//Selection Sort 구현
+		for ( i=0 ; i<a.length-1 ; i++) // 0 1 2 3 (4) → 비교 기준 데이터의 인덱스
+									  //				마지막 데이터는 비교할 필요가 없기 때문
+		{
+			//System.out.println("웅");
+
+			for ( j=i+1 ; j<a.length ; j++ ) //0 - 1 2 3 4
+										   //1 - 2 3 4
+			{
+				//System.out.println("쑝");
+				if ( a[i]> a[j] )
+				{
+					//자리 바꾸기
+					a[i] = a[i]^a[j];
+					a[j] = a[j]^a[i];
+					a[i] = a[i]^a[j];
+				}
+			}	
+		}
 
 
 	}

@@ -1,3 +1,23 @@
+/*===========================
+	■■■ 만년달력 ■■■
+============================*/
+
+// 실행 예)
+// 『연도』를 입력하세요 : 2019
+// 『월』을 입력하세요 : 7
+/*
+	[ 2019년 7월 ]
+	
+ 일 월 화 수 목 금 토
+=======================
+    1  2  3  4  5  6
+ 7  8  9 10 11 12 13
+14 15 16 17 18 19 20
+21 22 23 24 25 26 27
+28 29 30 31
+=======================
+*/
+
 import java.util.Scanner;
 
 public class aa000
@@ -5,50 +25,64 @@ public class aa000
 
 	public static void main(String[] args)
 	{
-		int y, m, d;
 		Scanner sc = new Scanner(System.in);
-		System.out.print("년 월 일 입력(공백구분) : ");
-		y = sc.nextInt();
-		m = sc.nextInt();
-		d = sc.nextInt();
-	
 
-		int sum=0;
-		for ( int i=1 ; i<y  ; i++ )
+		int y,m,nalsu,w;
+		
+		do
 		{
-			if ( i%4==0 && i%100!=0 || i%400==0)
+			System.out.print("『연도』를 입력하세요 : ");
+			y = sc.nextInt();
+		}
+		while (y<1);
+
+		do
+		{
+			System.out.print("『월』을 입력하세요 : ");
+			m = sc.nextInt();
+		}
+		while (m<1 || m>12);
+
+		int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		if ( y%4==0 && y%100==0 || y%400==0)
+		{
+			days[1] = 29;
+		}
+		
+		nalsu = (y-1)*365 +(y-1)/4 - (y-1)/100 + (y-1)/400;
+		
+		for (int i=0 ; i<m-1 ; i++ )
+		{
+			nalsu += days[i];
+		}
+
+		nalsu += 1;
+		
+		w=nalsu%7;
+
+		System.out.print("\t [ "+y+"년 "+m+"월 ]");
+		System.out.println();
+		System.out.println("  일  월  화  수  목  금  토");
+		System.out.println("=======================");
+
+		for (int i=1; i<=w ; i++ )
+		{
+			System.out.print("    ");
+		}
+		for (int i=1 ; i<=days[m-1] ; i++)
+		{
+			System.out.printf("%4d",i);
+			w++;
+			if (w%7==0)
 			{
-				sum += 366;
-			}
-			else
-			{
-				sum += 365;
+				System.out.println();
 			}
 		}
 
-		for ( int i=1 ; i<m ; i++ )
+		if (w%7!=0)
 		{
-			if (m==2)
-				sum += 28;
-			else if (m%2==0)
-				sum += 30;
-			else if (m%2!=0)
-				sum += 31;
+			System.out.println();
 		}
-
-		for ( int i=1 ; i<=d ; i++)
-		{
-			sum += i;
-		} 
-
-		int dday = sum%7;
-
-
-		
-		String[] daynames = {"월요일","화요일","수요일","목요일","금요일","토요일","일요일"};
-		
-
-		System.out.println(dday);
 	}
 
 }
