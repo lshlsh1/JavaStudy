@@ -1,91 +1,120 @@
-/*===========================
-	■■■ 만년달력 ■■■
-============================*/
-
-// 실행 예)
-// 『연도』를 입력하세요 : 2019
-// 『월』을 입력하세요 : 7
-/*
-	[ 2019년 7월 ]
-	
- 일 월 화 수 목 금 토
-=======================
-    1  2  3  4  5  6
- 7  8  9 10 11 12 13
-14 15 16 17 18 19 20
-21 22 23 24 25 26 27
-28 29 30 31
-=======================
-*/
 
 import java.util.Scanner;
-
-public class aa000
+class Record
 {
+   String hak, name ;   //-- 한번 이름
+   int kor,eng,mat;   //-- 국어,영어,수학
+   int tot,avg   ;      //-- 총점,평균
+}
 
-	public static void main(String[] args)
-	{
-		Scanner sc = new Scanner(System.in);
+interface Sungjuk
+{
+   public void set();
+   public void input();
+   public void print();
+}
 
-		int y,m,nalsu,w;
-		
-		do
-		{
-			System.out.print("『연도』를 입력하세요 : ");
-			y = sc.nextInt();
-		}
-		while (y<1);
+class SungjukImpl implements Sungjuk
+{
+   int n=0; // 인원수 
+   char[][] st ;   // 성적 넣기 
 
-		do
-		{
-			System.out.print("『월』을 입력하세요 : ");
-			m = sc.nextInt();
-		}
-		while (m<1 || m>12);
+   Record[] record;
 
-		int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-		if ( y%4==0 && y%100==0 || y%400==0)
-		{
-			days[1] = 29;
-		}
-		
-		nalsu = (y-1)*365 +(y-1)/4 - (y-1)/100 + (y-1)/400;
-		
-		for (int i=0 ; i<m-1 ; i++ )
-		{
-			nalsu += days[i];
-		}
+   public void set()
+   {
+      Scanner sc= new Scanner(System.in);
+      System.out.print("인원 수 입력(1~10) : ");
+      n = sc.nextInt();
 
-		nalsu += 1;
-		
-		w=nalsu%7;
+      record = new Record[n];
+      st = new char[n][3];
+   }
+      
+   public void st()
+   {
+      for (int i=0 ; i<n ; i++ )
+      {
+         st[i][0] = suwoo(record[i].kor);
+         st[i][1] = suwoo(record[i].eng);
+         st[i][2] = suwoo(record[i].mat);
 
-		System.out.print("\t [ "+y+"년 "+m+"월 ]");
-		System.out.println();
-		System.out.println("  일  월  화  수  목  금  토");
-		System.out.println("=======================");
+      }
 
-		for (int i=1; i<=w ; i++ )
-		{
-			System.out.print("    ");
-		}
-		for (int i=1 ; i<=days[m-1] ; i++)
-		{
-			System.out.printf("%4d",i);
-			w++;
-			if (w%7==0)
-			{
-				System.out.println();
-			}
-		}
+   }
 
-		if (w%7!=0)
-		{
-			System.out.println();
-		}
-	}
+   public char suwoo(int a)
+   {
+      char st = 0;
+      if (a>=90 && a<=100)
+         st = '수';
+      else if (a>=80 && a<90)
+         st = '우';
+      else if (a>=70 && a<80)
+         st = '미';
+      else if (a>=60 && a<70)
+         st = '양';
+      else 
+         st = '가';
+      
+      return st;
+   }
+
+   public void input()
+   {
+      Scanner sc= new Scanner(System.in);
+            
+      
+
+      for (int i=0; i<n ; i++ )
+      {   
+         Record rc = new Record();
+
+         System.out.printf("%d번째 학생의 학번 이름 입력(공백구분) : ",i+1);
+         rc.hak = sc.next();
+         rc.name = sc.next();
+
+         System.out.print("국어 영어 수학 점수 입력   (공백구분) : ");
+         rc.kor = sc.nextInt();
+         rc.eng = sc.nextInt();
+         rc.mat = sc.nextInt();
+
+         rc.tot = rc.kor+rc.eng+rc.mat;
+         rc.avg = rc.tot/3;
+
+         record[i] = rc;
+
+      }
+
+      System.out.println();
+   
+   }
+
+   public void print()
+   {
+      st();
+      for (int i=0; i<n; i++ )
+      {
+         System.out.printf("%s %s %3d %3d %3d %5d %3d\n",record[i].hak, record[i].name, record[i].kor, record[i].eng, record[i].mat, record[i].tot, record[i].avg);
+         System.out.printf("%17c %2c %2c\n",st[i][0],st[i][1],st[i][2]);
+      }
+      System.out.println();
+   
+   }
+
 
 }
-		
-		
-	
+public class Test116
+{
+   public static void main(String[] args)
+   {
+      Sungjuk ob = new SungjukImpl();
+
+      // 문제 해결 과정에서 작성해야 할 ob 구성
+
+      ob.set();
+      ob.input();
+      ob.print();
+   
+   }
+}
