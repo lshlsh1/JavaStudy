@@ -27,5 +27,6 @@ public class Test122	// extends Object
 		//--==>> ob.toString() : 재정의한 toString()...
 
 		System.out.println("ob		:"+ob);
+		//--==>> ob              :재정의한 toString()...
 	}
 }
