@@ -7,7 +7,7 @@ import java.util.Stack;
 public class Test150
 {
 	// 정적 문자열 배여려 선언 및 초기화
-	private static final String[] colors = {"검정", "노랑", "초록", "파랑", "빨강", "연두"}; 
+	private static final String[] colors = {"검정", "노랑", "초록", "파랑", "빨강", "연두"};
 	
 	//생성자
 	public Test150()

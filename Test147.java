@@ -39,7 +39,7 @@ public class Test147
 
 		try
 		{
-			a = getData(-2); //② 무조건 예외 발생
+			a = getData(-2); // ② 무조건 예외 발생
 		}
 		catch (Exception e)	// ③ 잡아낸 예외
 		{
